@@ -69,4 +69,19 @@ public class EnUygunTest {
     public void userShouldLandOnThePaymentPage() {
         Assert.assertTrue(eu.verifyIsDisplayedMethod(eu.getPayButton()));
     }
+
+    @When("Select the company")
+    public void selectTheCompany() {
+        eu.clickMethod(eu.getPamukkaleCompany().get(1));
+    }
+
+    @And("Choose the seat is already booked")
+    public void chooseTheSeatIsAlreadyBooked() {
+eu.clickMethod(eu.getBookedSeat());
+    }
+
+    @Then("User should see the warning message")
+    public void userShouldSeeTheWarningMessage() {
+        Assert.assertTrue(eu.verifyIsDisplayedMethod(eu.getWarningMessage()));
+    }
 }

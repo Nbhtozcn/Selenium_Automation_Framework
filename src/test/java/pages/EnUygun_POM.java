@@ -58,6 +58,18 @@ public class EnUygun_POM extends MyMethods {
     private WebElement continueToPaymentButton;
     @FindBy(xpath = "//div[text()='Ödeme yap']")
     private WebElement payButton;
+    @FindBy(xpath = "//div[contains(@class,'sold')]")
+    private WebElement bookedSeat;
+    @FindBy(xpath = "//span[text()='Dolu bir koltuk seçtiniz, lütfen beyaz renkle belirtlen boş koltuklardan birini seçin.']")
+    private WebElement warningMessage;
+
+    public WebElement getBookedSeat() {
+        return bookedSeat;
+    }
+
+    public WebElement getWarningMessage() {
+        return warningMessage;
+    }
 
     public WebElement getEmailAddressBeforePayment() {
         return emailAddressBeforePayment;
