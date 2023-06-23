@@ -9,7 +9,6 @@ import org.testng.annotations.Parameters;
 import utilities.DriverClass;
 
 @CucumberOptions(
-        tags = "@Login",
         features = {"src/test/java/features"},
         glue = {"step_definitions"},
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
