@@ -20,3 +20,8 @@ Feature: En Uygun Feature
     When Select the company
     And Choose the seat is already booked
     Then User should see the warning message
+
+  Scenario: Validate navbar links functionality
+    Given Navigated to home page
+    And Click each of navigate bar link
+    Then Verify that the page has loaded successfully by checking the page URL

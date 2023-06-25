@@ -62,6 +62,12 @@ public class EnUygun_POM extends MyMethods {
     private WebElement bookedSeat;
     @FindBy(xpath = "//span[text()='Dolu bir koltuk seçtiniz, lütfen beyaz renkle belirtlen boş koltuklardan birini seçin.']")
     private WebElement warningMessage;
+    @FindBy(css = ".navbar-nav.hidden-sm-down>a")
+    private List<WebElement> navbarLinkList;
+
+    public List<WebElement> getNavbarLinkList() {
+        return navbarLinkList;
+    }
 
     public WebElement getBookedSeat() {
         return bookedSeat;

@@ -4,12 +4,17 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pages.EnUygun_POM;
 import utilities.DriverClass;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class EnUygunTest {
+    HashMap<String,String> actualHashMap;
     EnUygun_POM eu=new EnUygun_POM();
     @Given("Navigated to home page")
     public void navigateToHttpsWwwEnuygunComOtobusBileti() {
@@ -84,4 +89,27 @@ eu.clickMethod(eu.getBookedSeat());
     public void userShouldSeeTheWarningMessage() {
         Assert.assertTrue(eu.verifyIsDisplayedMethod(eu.getWarningMessage()));
     }
+
+    @And("Click each of navigate bar link")
+    public void clickEachOfNavigateBarLink() {
+        actualHashMap= new HashMap<>();
+        for (WebElement element : eu.getNavbarLinkList()) {
+            String key = element.getText();
+            element.click();
+            String value = DriverClass.getDriver().getCurrentUrl();
+            actualHashMap.put(key, value);
+            DriverClass.getDriver().navigate().back();
+        }
+    }
+    @Then("Verify that the page has loaded successfully by checking the page URL")
+    public void verifyThatThePageHasLoadedSuccessfullyByCheckingThePageURL() {
+        HashMap<String,String> expectedMap=new HashMap<>();
+        expectedMap.put("Uçak Bileti","https://www.enuygun.com/ucak-bileti/");
+        expectedMap.put("Otobüs Bileti","https://www.enuygun.com/otobus-bileti/");
+        expectedMap.put("Otel","https://www.enuygun.com/otel/");
+        expectedMap.put("Araç Kiralama","https://www.enuygun.com/arac-kiralama/");
+        expectedMap.put("Transfer","https://www.enuygun.com/transfer/");
+        Assert.assertEquals(actualHashMap,expectedMap);
+    }
+
 }

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
 
 public class MyMethods {
     public WebDriverWait wait = new WebDriverWait(DriverClass.getDriver(), Duration.ofSeconds(60));
@@ -87,5 +89,20 @@ public class MyMethods {
     }
     public void clear(WebElement element) {
         element.clear();
+    }
+
+
+    public HashMap<String, String> createHashMap(List<WebElement> list) {
+        HashMap<String, String> resultMap = new HashMap<>();
+
+        for (WebElement element : list) {
+            String key = element.getText();
+            element.click();
+            String value = element.getAttribute("href");
+            resultMap.put(key, value);
+            DriverClass.getDriver().navigate().back();
+        }
+
+        return resultMap;
     }
 }
