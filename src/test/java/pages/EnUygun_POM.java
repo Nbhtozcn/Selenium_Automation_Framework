@@ -65,6 +65,28 @@ public class EnUygun_POM extends MyMethods {
     @FindBy(css = ".navbar-nav.hidden-sm-down>a")
     private List<WebElement> navbarLinkList;
 
+    @FindBy(css = ".searchBoxOld-P2GCKq3V7DvEXIgWsSCP")
+    private WebElement urunArama;
+
+    @FindBy(id = "onetrust-accept-btn-handler")
+    private  WebElement cerezlerikabulet;
+
+    @FindBy(xpath = "//a[text()='Kampanyalar']")
+    private WebElement kampanyalar;
+
+
+    public WebElement getKampanyalar() {
+        return kampanyalar;
+    }
+
+    public WebElement getCerezlerikabulet() {
+        return cerezlerikabulet;
+    }
+
+    public WebElement getUrunArama() {
+        return urunArama;
+    }
+
     public List<WebElement> getNavbarLinkList() {
         return navbarLinkList;
     }

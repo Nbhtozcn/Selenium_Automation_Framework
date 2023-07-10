@@ -4,6 +4,7 @@ import io.cucumber.java.Scenario;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.WebElement;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -42,7 +43,7 @@ public class ExcelUtilities {
         Row row;
         if (!file.exists()) { // if file doesn't exist
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("Campus Test Results");
+            XSSFSheet sheet = workbook.createSheet("Test Results");
             row = sheet.createRow(0);
             Cell cell = row.createCell(0);
             cell.setCellValue(scenario.getId());
@@ -73,7 +74,7 @@ public class ExcelUtilities {
             try {
                 fileInputStream = new FileInputStream(path);
                 workbook = WorkbookFactory.create(fileInputStream);
-                sheet = workbook.getSheet("Campus Test Results");
+                sheet = workbook.getSheet("Test Results");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -105,26 +106,7 @@ public class ExcelUtilities {
             }
         }
     }
-    public static void updateDataInExcel(String filePath, String sheetName, int rowNumber, int columnNumber, String newData) {
-        try {
-            FileInputStream file = new FileInputStream(new File(filePath));
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
-            XSSFSheet sheet = workbook.getSheet(sheetName);
-            Row row = sheet.getRow(rowNumber);
-            Cell cell = row.getCell(columnNumber);
-            if (cell == null) {
-                cell = row.createCell(columnNumber);
-            }
-            cell.setCellValue(newData);
-            file.close();
-            FileOutputStream outFile = new FileOutputStream(new File(filePath));
-            workbook.write(outFile);
-            outFile.close();
-            workbook.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
     public static String generateRandomString(int length) {
         String[] vowels = {"a", "e", "i", "o", "u"};
         String[] consonants = {"b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"};

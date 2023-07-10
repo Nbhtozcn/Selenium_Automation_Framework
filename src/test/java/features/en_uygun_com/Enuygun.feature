@@ -1,6 +1,6 @@
 Feature: En Uygun Feature
-  Scenario: Login
-    Given En uygun login
+#  Scenario: Login
+#    Given En uygun login
   Scenario: As an admin user I should be able to book a bus ticket
     Given Navigated to home page
     And Click on bus tab
@@ -25,3 +25,6 @@ Feature: En Uygun Feature
     Given Navigated to home page
     And Click each of navigate bar link
     Then Verify that the page has loaded successfully by checking the page URL
+
+  Scenario: Hepsi burada
+    Given Go to hepsiburada

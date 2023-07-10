@@ -33,6 +33,12 @@ public class DriverClass {
                     break;
                 default:
                     ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--disable-extensions");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--disable-infobars");
+                    options.addArguments("--disable-notifications");
+                    options.addArguments("--disable-scroll-bounce");
+
                     options.addArguments("--remote-allow-origins=*"); // To solve the error with Chrome v111
                     threadDriver.set(new ChromeDriver(options));
                     threadDriver.get().manage().window().maximize();
@@ -56,6 +62,13 @@ public class DriverClass {
 
     public static void setThreadDriverName(String browserName){
         threadDriverName.set(browserName);
+    }
+    public static void setWait(int second) {
+        try {
+            Thread.sleep(second * 1000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
