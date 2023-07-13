@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class MyMethods {
     public WebDriverWait wait = new WebDriverWait(DriverClass.getDriver(), Duration.ofSeconds(60));
+    Actions actions;
 
     public void sendKeysMethod(WebElement element, String keys) {
         waitUntilVisible(element);
@@ -62,6 +63,10 @@ public class MyMethods {
     public boolean verifyIsDisplayedMethod(WebElement element) {
         waitUntilClickable(element);
         return element.isDisplayed();
+    }
+    public void moveToElement(WebElement element){
+        waitUntilVisible(element);
+        actions.moveToElement(element).build().perform();
     }
 
     public void setWait(int second) {

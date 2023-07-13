@@ -66,16 +66,22 @@ public class ModaMerve_POM extends MyMethods {
     private WebElement registerSuccessMessage;
     @FindBy(css = "div[class='fl col-12 catalogWrapper']>div>div>div>a")
     private List<WebElement> listOfProducts;
+    @FindBy(css = "div.fl.col-12.proRowName>div>a")
+    private List<WebElement> nameListOfTheProducts;
     @FindBy(css = ".fl.col-12.ease.variantList>a")
     private List<WebElement> listOfSizes;
     @FindBy(xpath = "(//a[@id='addCartBtn'])[2]")
     private WebElement addToCartButton;
-    @FindBy(css = "span.title.basketlist-productinfo-title")
+    @FindBy(css = "span.basketlist-productinfo-title")
     private WebElement singleProductNameInTheCart;
     @FindBy(css = "div[class='col col-6 col-xs-12 a-left p-left currentPrice discoF simge-tl ']")
     private WebElement priceOfTheProductInTheContent;
     @FindBy(css = ".shoppingReview_container>dl>div>dd")
     private WebElement singleProductPriceInTheCart;
+
+    public List<WebElement> getNameListOfTheProducts() {
+        return nameListOfTheProducts;
+    }
 
     public WebElement getSingleProductPriceInTheCart() {
         return singleProductPriceInTheCart;

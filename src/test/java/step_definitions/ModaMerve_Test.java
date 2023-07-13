@@ -53,7 +53,7 @@ public class ModaMerve_Test {
 
 
         List<ProductInfo> productInfoList = new ArrayList<>();
-            for (int i = 0; i < modamerve.getListOfYourPhotos().size() - 1; i++) {
+        for (int i = 0; i < modamerve.getListOfYourPhotos().size() - 1; i++) {
             WebElement productLink = modamerve.getListOfProductLink().get(i);
             WebElement photoLink = modamerve.getListOfPhotoLinks().get(i);
             WebElement commentOfPhoto = modamerve.getListOfComments().get(i);
@@ -67,8 +67,8 @@ public class ModaMerve_Test {
             ProductInfo productInfo = new ProductInfo(productLinkValue, photoLinkValue, commentOfPhotoText, dateOfCommentText);
             productInfoList.add(productInfo);
         }
-         String path = "src/test/java/apachePOI/ModaMerve.xlsx";
-         writeInExcel(path, productInfoList, LocalDateTime.now());
+        String path = "src/test/java/apachePOI/ModaMerve.xlsx";
+        writeInExcel(path, productInfoList, LocalDateTime.now());
     }
 
 
@@ -79,7 +79,8 @@ public class ModaMerve_Test {
 
     @And("I click on the Sign Up button on the opened page")
     public void iClickOnTheSignUpButtonOnTheOpenedPage() {
-        modamerve.clickMethod(modamerve.getSignUpButton());
+
+        actions.moveToElement(modamerve.getSignUpButton()).click().build().perform();
     }
 
     @And("I enter a password different from the previously entered password in the password confirmation field")
@@ -126,7 +127,7 @@ public class ModaMerve_Test {
     public void iClickOnTheSaveButton() {
 
         jse.executeScript("arguments[0].click();", modamerve.getRegisterSaveButton());
-        modamerve.setWait(4);
+
 
     }
 
@@ -142,7 +143,7 @@ public class ModaMerve_Test {
 
     @When("I select a product and size")
     public void iSelectAProductAndSize() {
-        nameOfTheProduct = modamerve.getListOfProducts().get(0).getText();
+        nameOfTheProduct = modamerve.getNameListOfTheProducts().get(0).getText();
         priceOfTheProduct = modamerve.getPriceOfTheProductInTheContent().getText();
         modamerve.clickMethod(modamerve.getListOfProducts().get(0));
         List<WebElement> filteredElements = modamerve.getListOfSizes().stream()
@@ -153,12 +154,13 @@ public class ModaMerve_Test {
             WebElement firstElement = filteredElements.get(0);
             firstElement.click();
         }
+        System.out.println(nameOfTheProduct);
 
     }
 
     @And("I click on the Add to Cart button")
     public void iClickOnTheAddToCartButton() {
-        modamerve.setWait(5);
+
         JavascriptExecutor jsExecutor = (JavascriptExecutor) DriverClass.getDriver();
         jsExecutor.executeScript("window.scrollTo(0, 0);");
         actions.moveToElement(modamerve.getAddToCartButton()).click().build().perform();
@@ -166,13 +168,13 @@ public class ModaMerve_Test {
 
     @Then("the product should be added to the cart")
     public void theProductShouldBeAddedToTheCart() {
-
-    // Assert.assertEquals(nameOfTheProduct,modamerve.getSingleProductNameInTheCart().getText());
+        modamerve.setWait(5);
+        Assert.assertEquals(nameOfTheProduct, modamerve.getSingleProductNameInTheCart().getText());
     }
 
     @And("the total cart value should be updated with the product price")
     public void theTotalCartValueShouldBeUpdatedWithTheProductPrice() {
-        modamerve.setWait(10);
+
         Assert.assertTrue(priceOfTheProduct.contains(modamerve.getSingleProductPriceInTheCart().getText()));
     }
 
@@ -217,7 +219,7 @@ public class ModaMerve_Test {
             } else {
                 workbook = new XSSFWorkbook();
             }
-        String sheetName = currentTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            String sheetName = currentTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             XSSFSheet sheet = workbook.createSheet(sheetName);
 
 
