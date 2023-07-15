@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ExcelUtilities {
-    public static ArrayList<ArrayList<String>> getDataFromExcel(String path, String sheetName, int columnCount) {
+    public static Object[][] getDataFromExcel(String path, String sheetName, int columnCount) {
         Sheet sheet;
         try {
             FileInputStream fileInputStream = new FileInputStream(path);
@@ -25,18 +25,21 @@ public class ExcelUtilities {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ArrayList<ArrayList<String>> returnList = new ArrayList<>();
 
-        for (int i = 0; i < sheet.getPhysicalNumberOfRows(); i++) {
-            ArrayList<String> innerList = new ArrayList<>();
+        int rowCount = sheet.getPhysicalNumberOfRows() - 1;
+
+        Object[][] data = new Object[rowCount][columnCount];
+
+        for (int i = 0; i < rowCount; i++) {
             for (int j = 0; j < columnCount; j++) {
-                Cell cell = sheet.getRow(i).getCell(j);
-                innerList.add(cell.toString());
+                Cell cell = sheet.getRow(i + 1).getCell(j);
+                data[i][j] = cell.toString();
             }
-            returnList.add(innerList);
         }
-        return returnList;
+
+        return data;
     }
+
 
     public static void writeInExcel(String path, Scenario scenario, LocalDateTime startTime, LocalDateTime endTime, Duration duration) {
         File file = new File(path);
@@ -123,5 +126,25 @@ public class ExcelUtilities {
         }
         String randomString = sb.toString();
         return randomString.substring(0,1).toUpperCase() + randomString.substring(1);
+    }
+    public static void updateDataInExcel(String filePath, String sheetName, int rowNumber, int columnNumber, String newData) {
+        try {
+            FileInputStream file = new FileInputStream(new File(filePath));
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            XSSFSheet sheet = workbook.getSheet(sheetName);
+            Row row = sheet.getRow(rowNumber);
+            Cell cell = row.getCell(columnNumber);
+            if (cell == null) {
+                cell = row.createCell(columnNumber);
+            }
+            cell.setCellValue(newData);
+            file.close();
+            FileOutputStream outFile = new FileOutputStream(new File(filePath));
+            workbook.write(outFile);
+            outFile.close();
+            workbook.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -113,8 +113,6 @@ public class MyMethods {
     }
     public String generateRandomEmail() {
         String email = "";
-
-        // Generate a random string of alphanumeric characters
         String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -124,11 +122,8 @@ public class MyMethods {
             sb.append(characters.charAt(index));
         }
 
-        // Generate a random domain
         String[] domains = {"gmail.com", "yahoo.com", "hotmail.com", "example.com"};
         String domain = domains[random.nextInt(domains.length)];
-
-        // Concatenate the random string and domain to form the email
         email = sb.toString() + "@" + domain;
 
         return email;
