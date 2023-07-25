@@ -26,5 +26,3 @@ Feature: En Uygun Feature
     And Click each of navigate bar link
     Then Verify that the page has loaded successfully by checking the page URL
 
-  Scenario: Hepsi burada
-    Given Go to hepsiburada

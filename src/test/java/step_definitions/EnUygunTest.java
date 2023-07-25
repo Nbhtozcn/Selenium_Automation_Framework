@@ -118,18 +118,4 @@ public class EnUygunTest {
         expectedMap.put("Transfer", "https://www.enuygun.com/transfer/");
         Assert.assertEquals(actualHashMap, expectedMap);
     }
-
-    @Given("Go to hepsiburada")
-    public void goToHepsiburada() {
-        DriverClass.getDriver().get("https://www.hepsiburada.com/");
-        DriverClass.getDriver().findElement(By.cssSelector("button[id='onetrust-accept-btn-handler']"));
-        DriverClass.setWait(2);
-        JavascriptExecutor jse = (JavascriptExecutor) DriverClass.getDriver();
-        jse.executeScript("arguments[0].click()", DriverClass.getDriver().findElement(By.xpath("//div[text()='Ürün, kategori veya marka ara']")));
-        DriverClass.setWait(2);
-        DriverClass.getDriver().findElement(By.cssSelector("input[placeholder='Ürün, kategori veya marka ara']")).sendKeys("Araba");
-        DriverClass.setWait(2);
-        DriverClass.getDriver().findElement(By.cssSelector("div[class='searchBoxOld-yDJzsIfi_S5gVgoapx6f']")).click();
-
-    }
 }

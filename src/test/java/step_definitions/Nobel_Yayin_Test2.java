@@ -4,8 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pages.Nobel_Yayin_POM;
@@ -56,8 +54,8 @@ public class Nobel_Yayin_Test2 {
 
     @Then("I should see that the shipping fee is {double}₺")
     public void iShouldSeeThatTheShippingFeeIs₺(double arg0) {
-        int cargoPrice=extractIntegerValue(nobelYayin.getCargoPriceInTheCart().getText());
-        Assert.assertEquals(cargoPrice,0);
+        int cargoPrice = extractIntegerValue(nobelYayin.getCargoPriceInTheCart().getText());
+        Assert.assertEquals(cargoPrice, 0);
 
     }
 
@@ -65,7 +63,7 @@ public class Nobel_Yayin_Test2 {
     public void iClickAddToCartButtonForTheFirstBookPricedLessThan(int arg0) {
         for (int i = 0; i < nobelYayin.getListOfPriceForEducationBook().size(); i++) {
             System.out.println(nobelYayin.getListOfPriceForEducationBook().get(i).getText());
-            if (extractIntegerValue(nobelYayin.getListOfPriceForEducationBook().get(i).getText()) >100) {
+            if (extractIntegerValue(nobelYayin.getListOfPriceForEducationBook().get(i).getText()) > 100) {
                 nobelYayin.clickMethod(nobelYayin.getListOfBuyButtonForEducationBook().get(i));
                 break;
             }
@@ -76,28 +74,25 @@ public class Nobel_Yayin_Test2 {
 
     @Then("I should see the shipping fee calculated as {double}₺")
     public void iShouldSeeTheShippingFeeCalculatedAs₺(double arg0) {
-        int cargoPrice=extractIntegerValue(nobelYayin.getCargoPriceInTheCart().getText());
-        Assert.assertEquals(cargoPrice,2700);
+        int cargoPrice = extractIntegerValue(nobelYayin.getCargoPriceInTheCart().getText());
+        Assert.assertEquals(cargoPrice, 2700);
     }
 
     @And("I am logged in to my account")
     public void iAmLoggedInToMyAccount() {
         nobelYayin.clickMethod(nobelYayin.getHomepageLoginSignupButton());
-        nobelYayin.sendKeysMethod(nobelYayin.getLoginEmailAddress(),"qahuntproject@gmail.com");
-        nobelYayin.sendKeysMethod(nobelYayin.getLoginPassword(),"qahunt");
+        nobelYayin.sendKeysMethod(nobelYayin.getLoginEmailAddress(), "qahuntproject@gmail.com");
+        nobelYayin.sendKeysMethod(nobelYayin.getLoginPassword(), "qahunt");
         nobelYayin.clickMethod(nobelYayin.getLoginSubmitButton());
         DriverClass.getDriver().navigate().back();
         DriverClass.getDriver().navigate().back();
-
-
 
 
     }
 
     @When("I search for a book using its title")
     public void iSearchForABookUsingItsTitle() {
-        nobelYayin.sendKeysMethod(nobelYayin.getSearchButton(),"Algoritma Tasarımı ve Geliştirme - JAVA ve C# Programlama Dili Örnekleri");
-
+        nobelYayin.sendKeysMethod(nobelYayin.getSearchButton(), "Algoritma Tasarımı ve Geliştirme - JAVA ve C# Programlama Dili Örnekleri");
 
 
     }
@@ -111,10 +106,11 @@ public class Nobel_Yayin_Test2 {
     @When("I click on the {string} button for that book")
     public void iClickOnTheButtonForThatBook(String arg0) {
         nobelYayin.clickMethod(nobelYayin.getAddToFavoritesButton());
-        nameOfTheFavoriteBookAfterSearch=nobelYayin.getNameOfTheFavoriteBookAfterSearch().getText();
+        nameOfTheFavoriteBookAfterSearch = nobelYayin.getNameOfTheFavoriteBookAfterSearch().getText();
 
 
     }
+
     @And("I should see a confirmation message indicating that the book has been added successfully")
     public void iShouldSeeAConfirmationMessageIndicatingThatTheBookHasBeenAddedSuccessfully() {
         Assert.assertTrue(nobelYayin.verifyIsDisplayedMethod(nobelYayin.getAddToFavoritesVerificationMessage()));
@@ -124,10 +120,11 @@ public class Nobel_Yayin_Test2 {
     public void theBookShouldBeAddedToMyListOfFavoriteBooks() {
         nobelYayin.clickMethod(nobelYayin.getMyAccountButton());
         nobelYayin.clickMethod(nobelYayin.getMyFavoritesButton());
-        nameOfTheFavoriteBookInFavorites=nobelYayin.getNameOfTheFavoriteBookInFav().getText();
-        Assert.assertEquals(nameOfTheFavoriteBookAfterSearch,nameOfTheFavoriteBookInFavorites);
-        
+        nameOfTheFavoriteBookInFavorites = nobelYayin.getNameOfTheFavoriteBookInFav().getText();
+        Assert.assertEquals(nameOfTheFavoriteBookAfterSearch, nameOfTheFavoriteBookInFavorites);
+
     }
+
     @Then("I click on My Account button")
     public void iClickOnMyAccountButton() {
         nobelYayin.clickMethod(nobelYayin.getMyAccountButton());
@@ -157,5 +154,8 @@ public class Nobel_Yayin_Test2 {
     }
 
 
+    @When("Signup")
+    public void signup() {
 
+    }
 }
