@@ -1,6 +1,6 @@
 Feature: Verify the Community Join Button
 
-  Scenario Outline: Check if the "Katıl" button loads the payment page of the "Romantik İlişkiler" community
+  Scenario Outline: Check if the "Katıl" button loads the payment page of the related community
     Given I am on the Evimdeki Psikologlar website homepage
     When I click on the Topluluk button in the top tab
     And I scroll down the webpage
