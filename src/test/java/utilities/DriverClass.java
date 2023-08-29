@@ -42,6 +42,8 @@ public class DriverClass {
                     options.addArguments("--remote-allow-origins=*"); // To solve the error with Chrome v111
                     threadDriver.set(new ChromeDriver(options));
                     threadDriver.get().manage().window().maximize();
+
+
             }
         }
         return threadDriver.get();
