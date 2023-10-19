@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -33,7 +34,9 @@ public class ModaMerve_Test {
 
     @Given("I am on the homepage")
     public void iAmOnTheHomepage() {
-        DriverClass.getDriver().get("https://www.modamerve.com/");
+
+        DriverClass.getDriver().get("https://www.macys.com");
+        DriverClass.getDriver().findElements(By.cssSelector("button.show-for-sr+a")).get(0).click();
 
     }
 
