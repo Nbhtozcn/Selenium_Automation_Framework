@@ -128,6 +128,59 @@ public class MyMethods {
 
         return email;
     }
-
+    public String generateRandomFullName() {
+        Random rand = new Random();
+        StringBuilder fullName = new StringBuilder();
+        char firstNameFirstChar = (char) (rand.nextInt(26) + 'A');
+        fullName.append(firstNameFirstChar);
+        for (int i = 0; i < 4; i++) {
+            char randomLowercase = (char) (rand.nextInt(26) + 'a');
+            fullName.append(randomLowercase);
+        }
+        fullName.append(' ');
+        char lastNameFirstChar = (char) (rand.nextInt(26) + 'A');
+        fullName.append(lastNameFirstChar);
+        for (int i = 0; i < 4; i++) {
+            char randomLowercase = (char) (rand.nextInt(26) + 'a');
+            fullName.append(randomLowercase);
+        }
+        return fullName.toString();
+    }
+    public String generateRandomPassword() {
+        Random rand = new Random();
+        StringBuilder password = new StringBuilder();
+        char firstChar = (char) (rand.nextInt(26) + 'A');
+        password.append(firstChar);
+        for (int i = 0; i < 2; i++) {
+            char randomLowercase = (char) (rand.nextInt(26) + 'a');
+            password.append(randomLowercase);
+        }
+        for (int i = 0; i < 4; i++) {
+            char randomDigit = (char) (rand.nextInt(10) + '0');
+            password.append(randomDigit);
+        }
+        return password.toString();
+    }
+    public String generatePhoneNumber() {
+        Random random = new Random();
+        StringBuilder phoneNumber = new StringBuilder("5");
+        for (int i = 1; i <= 9; i++) {
+            int digit = random.nextInt(10);
+            phoneNumber.append(digit);
+        }
+        return phoneNumber.toString();
+    }
+    public String generateNumericIdentity(int length) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("Length must be greater than zero.");
+        }
+        Random random = new Random();
+        StringBuilder identity = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int digit = random.nextInt(10);
+            identity.append(digit);
+        }
+        return identity.toString();
+    }
 
 }
