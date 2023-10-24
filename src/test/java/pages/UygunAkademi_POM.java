@@ -52,6 +52,12 @@ public class UygunAkademi_POM extends MyMethods {
     private WebElement activationKeyInput;
     @FindBy(css = "input[value='Sorgula']")
     private WebElement sorgulaButton;
+    @FindBy(id = "RegisterStudentParent_PhoneNumber-error")
+    private WebElement parentPhoneNumberErrorMessage;
+
+    public WebElement getParentPhoneNumberErrorMessage() {
+        return parentPhoneNumberErrorMessage;
+    }
 
     public WebElement getSorgulaButton() {
         return sorgulaButton;

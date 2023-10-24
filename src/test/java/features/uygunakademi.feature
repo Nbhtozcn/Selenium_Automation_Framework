@@ -43,3 +43,16 @@ Feature: Uygun Akademi Kayit Olma Feature
     And Aktivasyon kodunu gir ve SORGULA ya tikla
     And KAYIT OL a tikla
     Then Kayıt işleminiz başarı ile tamamlanmıştır metnini gor
+
+  Scenario:Bir veli olarak gecersiz bir telefon numarasi ile sisteme kaydolmaya calistigimda uygun hata mesajini almaliyim
+    Given Kayit ol sayfasina git
+    And Ad Soyadi gir
+    And Email adresini gir
+    And Sifreyi gir
+    And TC Vatandasi degilim butonuna tikla
+    And ILERI butonuna tikla
+    And VELI secenegine tikla
+    And Gecersiz bir veli Telefon numarasini gir
+    And Veli TC kimlik numarasi gir
+    And KAYIT OL a tikla
+    Then Veli icin Lutfen telefon numaranizi giriniz hata mesajini gor

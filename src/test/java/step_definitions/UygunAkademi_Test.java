@@ -122,5 +122,13 @@ public class UygunAkademi_Test {
     }
 
 
+    @And("Gecersiz bir veli Telefon numarasini gir")
+    public void gecersizBirVeliTelefonNumarasiniGir() {
+        ua.sendKeysMethod(ua.getParentPhoneNumber(),ua.generateNumericIdentity(6));
+    }
 
+    @Then("Veli icin Lutfen telefon numaranizi giriniz hata mesajini gor")
+    public void veliIcinLutfenTelefonNumaraniziGirinizHataMesajiniGor() {
+Assert.assertEquals(ua.getParentPhoneNumberErrorMessage().getText(),"Lutfen telefon numaranizi giriniz");
+    }
 }
